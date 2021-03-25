@@ -5,6 +5,8 @@ import Dashboard from './Dashboard';
 import LoadingBar from 'react-redux-loading';
 import NewTweet from './NewTweet';
 import TweetPage from './TweetPage';
+import { BrowserRouter, Route, Router } from 'react-router-dom';
+import Nav from './Nav';
 
 class App extends Component {
   componentDidMount(){
@@ -12,12 +14,22 @@ class App extends Component {
   }
   render() {
     return (
+      <BrowserRouter>
       <div> 
+        <Nav />
         <LoadingBar />
         {
-          this.props.loading === true ? null : <TweetPage match={{params:{id:'czpa59mg577x1oo45cup0d'}}} />
+          this.props.loading === true ? null :
+          <div>
+            <Route exact path='/' component={Dashboard} />
+            <Route  path='/new' component={NewTweet} />
+            <Route  path='/tweet/:id' component={TweetPage} />
+          </div>
+           
         }
       </div>
+      </BrowserRouter>
+      
     )
   }
 }
