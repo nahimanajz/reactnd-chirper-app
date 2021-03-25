@@ -9,6 +9,7 @@ export default function tweets(state = {}, action) {
             }
         case TOGGLE_TWEETS:
             console.log(action.id)
+          
             return {
                 ...state,
                 [action.id]: {
@@ -20,13 +21,14 @@ export default function tweets(state = {}, action) {
                 }
             }
         case ADD_TWEET:
+            
             const { tweet } = action;
             let replyingTo = {};
             if(tweet.replyingTo !== null){
                 replyingTo = {
                     [tweet.replyingTo]:{
                         ...state[tweet.replyingTo],
-                        replies:state[tweet.replyTo].replies.concat([tweet.id])
+                        replies:state[tweet.replyingTo].replies.concat([tweet.id])
                     }
                 }
             }

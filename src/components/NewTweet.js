@@ -10,7 +10,7 @@ class NewTweet extends React.Component {
         e.preventDefault();
         const { text } = this.state;
         const { dispatch, id } = this.props;
-
+        
         dispatch(handleAddTweet(text, id))
 
         this.setState(()=>({
